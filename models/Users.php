@@ -33,9 +33,9 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['fio', 'login', 'phone', 'password', 'role_id'], 'required'],
+            [['fio', 'login', 'phone', 'password', 'role_id'], 'required', 'message' => 'Это обязательное поле'],
             [['role_id'], 'integer'],
-            [['fio', 'login', 'phone', 'password'], 'string', 'max' => 255],
+            [['fio', 'login', 'phone', 'password'], 'string', 'max' => 255, 'message' => 'Превышен лимит по символам'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Roles::class, 'targetAttribute' => ['role_id' => 'id']],
         ];
     }
@@ -47,10 +47,10 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'fio' => 'Fio',
-            'login' => 'Login',
-            'phone' => 'Phone',
-            'password' => 'Password',
+            'fio' => 'ФИО',
+            'login' => 'Логин',
+            'phone' => 'Телефон',
+            'password' => 'Пароль',
             'role_id' => 'Role ID',
         ];
     }
