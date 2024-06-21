@@ -12,11 +12,32 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'master_id')->textInput() ?>
+    <?= $form->field($model, 'master_id')->dropDownList([
+        1 => 'Галя',
+        2 => 'Юля',
+        3 => 'Светочка',
+        4 => 'Алина',
+        5 => 'Лена',
+    ]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->input('date', [
+        'min'=>'2024-06-21'
+    ]) ?>
 
-    <?= $form->field($model, 'time')->textInput() ?>
+
+    <?= $form->field($model, 'time')->dropDownList([
+        "8:00:00" => "8:00",
+        "9:00:00" => "9:00",
+        "10:00:00" => "10:00",
+        "11:00:00" => "11:00",
+        "12:00:00" => "12:00",
+        "13:00:00" => "13:00",
+        "14:00:00" => "14:00",
+        "15:00:00" => "15:00",
+        "16:00:00" => "16:00",
+        "17:00:00" => "17:00",
+        "18:00:00" => "18:00",
+    ]) ?>
 
 
     <div class="form-group">
