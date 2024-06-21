@@ -4,6 +4,7 @@
 /** @var string $content */
 
 use app\assets\AppAsset;
+use app\models\Roles;
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
@@ -42,9 +43,19 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     if(Yii::$app->user->isGuest){
         $items[] = ['label' => 'Login', 'url' => ['/site/login']];
         $items[] = ['label' => 'Register', 'url' => ['/site/register']];
-    } else {
+    } elseif(Yii::$app->user->identity->role_id == Roles::USER_ROLE) {
         $items[] = ['label' => 'Мои Записи', 'url' => ['/requests']];
         $items[] = ['label' => 'Записаться', 'url' => ['/requests/create']];
+        $items[] = '<li class="nav-item">'
+        . Html::beginForm(['/site/logout'])
+        . Html::submitButton(
+            'Logout (' . Yii::$app->user->identity->login . ')',
+            ['class' => 'nav-link btn btn-link logout']
+        )
+        . Html::endForm()
+        . '</li>';
+    } else {
+        $items[] = ['label' => 'Админка', 'url' => ['/requests']];
         $items[] = '<li class="nav-item">'
         . Html::beginForm(['/site/logout'])
         . Html::submitButton(
