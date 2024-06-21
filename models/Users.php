@@ -19,6 +19,11 @@ use Yii;
  */
 class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+
+    public function __tostring(){
+        return $this->fio;
+    }
+
     /**
      * {@inheritdoc}
      */
