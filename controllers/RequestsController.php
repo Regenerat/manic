@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Requests;
 use app\models\RequestsSearch;
+use app\models\Status;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -70,8 +72,12 @@ class RequestsController extends Controller
         $model = new Requests();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $model->user_id = Yii::$app->user->identity->id;
+                $model->status_id = Status::NEW_STATUS;
+                if($model->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }      
             }
         } else {
             $model->loadDefaultValues();
