@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Requests;
 use app\models\RequestsSearch;
+use app\models\Roles;
 use app\models\Status;
 use Yii;
 use yii\web\Controller;
@@ -41,7 +42,14 @@ class RequestsController extends Controller
     public function actionIndex()
     {
         $searchModel = new RequestsSearch();
-        $dataProvider = $searchModel->search($this->request->queryParams);
+        $IDs = null;
+        $user = Yii::$app->user->identity;
+
+        if($user->role_id != Roles::ADMIN_ROLE){
+            $IDs = $user->id;
+        }
+
+        $dataProvider = $searchModel->search($this->request->queryParams, $IDs);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

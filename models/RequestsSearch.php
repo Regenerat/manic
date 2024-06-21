@@ -38,7 +38,7 @@ class RequestsSearch extends Requests
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $id = null)
     {
         $query = Requests::find();
 
@@ -59,7 +59,7 @@ class RequestsSearch extends Requests
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
+            'user_id' => ($id ?? $this->user_id),
             'master_id' => $this->master_id,
             'date' => $this->date,
             'time' => $this->time,
