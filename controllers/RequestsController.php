@@ -76,7 +76,7 @@ class RequestsController extends Controller
                 $model->user_id = Yii::$app->user->identity->id;
                 $model->status_id = Status::NEW_STATUS;
                 if($model->save()){
-                    return $this->redirect(['view', 'id' => $model->id]);
+                    return $this->redirect(['index', 'id' => $model->id]);
                 }      
             }
         } else {
