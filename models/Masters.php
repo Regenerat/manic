@@ -14,6 +14,10 @@ use Yii;
  */
 class Masters extends \yii\db\ActiveRecord
 {
+    public function __toString()
+    {
+        return $this->fio;
+    }
     /**
      * {@inheritdoc}
      */

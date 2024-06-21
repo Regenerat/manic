@@ -3,12 +3,12 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\Users $model */
+/** @var app\models\Requests $model */
 
-$this->title = 'Регистрация';
+$this->title = 'Записаться';
 
 ?>
-<div class="users-create">
+<div class="requests-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
