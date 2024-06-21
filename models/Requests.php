@@ -52,9 +52,12 @@ class Requests extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'master_id' => 'Master ID',
-            'date' => 'Date',
-            'time' => 'Time',
+            'date' => 'Дата',
+            'time' => 'Время',
             'status_id' => 'Status ID',
+            'user' => 'ФИО',
+            'master' => 'Мастер',
+            'status' => 'Статус заявки'
         ];
     }
 
@@ -79,7 +82,7 @@ class Requests extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[User]].
+     * Gets query for [[Users]].
      *
      * @return \yii\db\ActiveQuery
      */
